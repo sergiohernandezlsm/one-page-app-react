@@ -1,34 +1,25 @@
-import * as UserActionTypes from '../actions/index';
+import { combineReducers } from 'redux';
+import { GET_USERS } from '../actions/types';
 
-const initialState = [
-  {
-    "id": 1,
-    "first_name": "sergio",
-    "last_name": "surf"
-  },
-  {
-    "id": 2,
-    "first_name": "karla",
-    "last_name": "surfergirl"
-  },
-  {
-    "id": 3,
-    "first_name": "John John Florence",
-    "last_name": "Pyzel"
-  }
-];
+const initialState = {
+  users: []
+};
 
-export default function User(state=initialState, action) {
+const user = (state=initialState, action) => {
   switch(action.type){
-    case UserActionTypes:
-      return [
+    case GET_USERS:
+      console.log(action)
+      return {
         ...state,
-        {
-          first_name: action.first_name,
-          last_name: action.last_name
-        }
-      ];
+        users: action.users
+      };
     default:
       return state
   }
 }
+
+const reducers = combineReducers({
+  user
+});
+
+export default reducers;
