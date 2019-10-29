@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
-import { Container, Row, Col, Table, ButtonToolbar, Button } from 'react-bootstrap';
-import AddButton from './AddButton'; 
+import { ButtonToolbar, Button } from 'react-bootstrap';
 
 const FormRow = ({users}) => {
   return (
     <Fragment>
       {users.map(user => 
-        <tr>
+        <tr key={user.id}>
           <td>{user.id}</td>
           <td>{user.first_name}</td>
           <td>{user.last_name}</td>
