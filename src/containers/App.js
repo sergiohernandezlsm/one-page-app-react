@@ -3,33 +3,20 @@ import '../App.css';
 import Form from '../components/Form';
 import Table from '../components/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 class App extends Component {
 
   state = {
-    users: [
-      {
-        "id": 1,
-        "first_name": "sergio",
-        "last_name": "surf",
-        "createdAt": "2019-10-29T09:14:13.000Z",
-        "updatedAt": "2019-10-29T09:14:13.000Z"
-      },
-      {
-        "id": 2,
-        "first_name": "karla",
-        "last_name": "surfergirl",
-        "createdAt": "2019-10-29T09:14:33.000Z",
-        "updatedAt": "2019-10-29T09:14:33.000Z"
-      },
-      {
-        "id": 3,
-        "first_name": "John John Florence",
-        "last_name": "Pyzel",
-        "createdAt": "2019-10-29T09:14:53.000Z",
-        "updatedAt": "2019-10-29T09:14:53.000Z"
-      }
-    ]
+    users: []
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:3000/api/users`)
+      .then(res => {
+        const users = res.data;
+        this.setState({ users });
+      })
   }
 
   render() {
