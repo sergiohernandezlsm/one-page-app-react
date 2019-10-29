@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
-import '../App.css';
+import { connect } from 'react-redux';
+import { getUsers } from '../actions';
 import Form from '../components/Form';
 import Table from '../components/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
 
 class App extends Component {
 
-  state = {
-    users: []
-  }
-
   componentDidMount() {
-    axios.get(`http://localhost:3000/api/users`)
-      .then(res => {
-        const users = res.data;
-        this.setState({ users });
-      })
+    this.props.getUsers();
   }
 
   render() {
     return (
       <div>
         <Form />
-        <Table users={this.state.users} />
+        <Table users={this.props.users} />
       </div>
     )
   }
 
 }
 
+const mapStateToProps = (state) => ({ users: state.user.users });
 
-export default App;
+export default connect(mapStateToProps, {getUsers} )(App);
