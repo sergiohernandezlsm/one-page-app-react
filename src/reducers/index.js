@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { GET_USERS, DELETE_USER } from '../actions/types';
+import { GET_USERS, DELETE_USER, CREATE_USER } from '../actions/types';
 
 const initialState = {
   users: []
@@ -17,6 +17,11 @@ const user = (state=initialState, action) => {
       return {
         ...state,
         users: state.users.filter( user => action.userId !== user.id)
+      }
+    case CREATE_USER:
+      return {
+        ...state,
+        users: state.users.concat(action.user)
       }
     default:
       return state

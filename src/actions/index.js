@@ -1,4 +1,4 @@
-import { GET_USERS, GET_USER, DELETE_USER } from './types';
+import { GET_USERS, GET_USER, DELETE_USER, CREATE_USER } from './types';
 import axios from 'axios';
 
 export const getUser = (first_name , last_name) => {
@@ -36,3 +36,18 @@ export const deleteUser = (userId) => {
     })
   }
 }
+
+export const createUser = (user) => {
+  return (dispatch) => {
+    axios.post(`http://localhost:3000/api/users`, user)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+      dispatch({
+        type: CREATE_USER,
+        user: res.data
+      })
+    })
+  }
+}
+
