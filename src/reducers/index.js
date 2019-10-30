@@ -30,14 +30,14 @@ const user = (state=initialState, action) => {
         editable: action.user
       };
     case UPDATE_USER:
+      console.log(action)
       return {
         ...state,
-        users: state.users.map((user,index) => { 
-          if(index !== action.index){
+        users: state.users.map( user => { 
+          if(user.id !== action.user.id){
             return user;
           }
           return {
-            ...user,
             ...action.user
           };    
          })

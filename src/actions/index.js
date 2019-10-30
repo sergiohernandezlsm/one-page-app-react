@@ -60,7 +60,6 @@ export const updateUser = (user, editable) => {
     first_name: user.first_name,
     last_name: user.last_name
   }
-  console.log(user)
   return (dispatch) => {
     axios.put(`http://localhost:3000/api/users/${editable.id}`, newUser)
     .then(res => {
