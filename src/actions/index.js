@@ -1,4 +1,4 @@
-import { GET_USERS, GET_USER, DELETE_USER, CREATE_USER } from './types';
+import { GET_USERS, GET_USER, DELETE_USER, CREATE_USER, EDIT_USER, UPDATE_USER } from './types';
 import axios from 'axios';
 
 export const getUser = (first_name , last_name) => {
@@ -28,7 +28,6 @@ export const deleteUser = (userId) => {
   return (dispatch) => {
   axios.delete(`http://localhost:3000/api/users/${userId}`)
     .then(res => {
-      console.log(res);
       dispatch({
         type: DELETE_USER,
         userId
@@ -41,8 +40,6 @@ export const createUser = (user) => {
   return (dispatch) => {
     axios.post(`http://localhost:3000/api/users`, user)
     .then(res => {
-      console.log(res);
-      console.log(res.data);
       dispatch({
         type: CREATE_USER,
         user: res.data
@@ -51,3 +48,26 @@ export const createUser = (user) => {
   }
 }
 
+export const editUser = (user) => {
+  return {
+    user,
+    type: EDIT_USER
+  };
+}
+
+export const updateUser = (user, editable) => {
+  const newUser = {
+    first_name: user.first_name,
+    last_name: user.last_name
+  }
+  console.log(user)
+  return (dispatch) => {
+    axios.put(`http://localhost:3000/api/users/${editable.id}`, newUser)
+    .then(res => {
+      dispatch({
+        type: UPDATE_USER,
+        user: res.data
+      })
+    })
+  }
+}

@@ -7,6 +7,9 @@ const DisplayTable = ({users}) => {
   return (
     <div>
       <Container>
+        <br></br>
+        <h4>Users List</h4>
+        <br></br>
         <Row>
           <Col>
             <Table striped bordered hover>

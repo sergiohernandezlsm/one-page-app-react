@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { deleteUser } from '../actions';
+import { deleteUser, editUser } from '../actions';
 import { ButtonToolbar, Button } from 'react-bootstrap';
 
-const FormRow = ({users, deleteUser}) => {
+const FormRow = ({users, deleteUser, editUser}) => {
+  
   return (
     <Fragment>
       {users.map(user => 
@@ -13,7 +14,7 @@ const FormRow = ({users, deleteUser}) => {
           <td>{user.last_name}</td>
           <td>
             <ButtonToolbar>
-              <Button variant="primary" size="sm">
+              <Button variant="primary" size="sm" onClick={() => editUser(user)}>
                 Edit
               </Button>
               <Button variant="secondary" size="sm" onClick={() => deleteUser(user.id)}>
@@ -30,4 +31,4 @@ const FormRow = ({users, deleteUser}) => {
 const mapStateToProps = (state) => ({ 
   users: state.user.users
 });
-export default connect(mapStateToProps, {deleteUser} )(FormRow);
+export default connect(mapStateToProps, {deleteUser, editUser} )(FormRow);
