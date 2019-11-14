@@ -33,6 +33,7 @@ const user = (state=initialState, action) => {
       console.log(action)
       return {
         ...state,
+        editable: null,
         users: state.users.map( user => { 
           if(user.id !== action.user.id){
             return user;

@@ -12,7 +12,8 @@ const DisplayForm = ({createUser, editable, updateUser }) => {
     e.preventDefault();
     const user = inputs;
     if( editable ) {
-      updateUser(inputs, editable)
+      user.id = editable.id
+      updateUser(user)
     } else {
       createUser(user);
     }
